@@ -41,3 +41,29 @@ Some ways to omit SSL certificate validation
 //    		e.printStackTrace();
 //    	}
 
+
+
+Overriding MIME HEADERS for Axis 1.X in ServiceLocator
+
+
+
+@Override
+    public Call createCall() throws ServiceException {
+    	 _call = new org.apache.axis.client.Call(this) {
+
+    	        @Override
+    	        public void setRequestMessage(Message msg) {
+    	            MimeHeaders hd = msg.getMimeHeaders();
+    	            //MimeHeaders hd = msgContext.getMessage().getMimeHeaders();
+    	            hd.addHeader("Accept-Encoding","gzip,deflate");
+    	            hd.addHeader("Content-Type","text/xml;charset=UTF-8");
+    	            hd.addHeader("SOAPAction","http://tempuri.org/Action");
+    	            hd.addHeader("Connection","Keep-Alive");
+
+    	            super.setRequestMessage(msg);
+    	        }
+
+    	    };
+
+    	    return _call;
+    }
