@@ -4,9 +4,13 @@ Automatically exported from code.google.com/p/self-signed-cert-trust-manager
 
 Some ways to omit SSL certificate validation
 
-
+1)
 	CustomTrustManager.initSsl();
-    	// Create a trust manager that does not validate certificate chains
+2)
+	AxisProperties.setProperty("axis.socketSecureFactory","org.apache.axis.components.net.SunFakeTrustSocketFactory");
+	
+3)	
+// Create a trust manager that does not validate certificate chains
 //    	TrustManager[] trustAllCerts = new TrustManager[]{
 //    	    new X509TrustManager() {
 //    	        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
@@ -35,4 +39,4 @@ Some ways to omit SSL certificate validation
 //    	} catch (MalformedURLException e) {
 //    		e.printStackTrace();
 //    	}
-//    	AxisProperties.setProperty("axis.socketSecureFactory","org.apache.axis.components.net.SunFakeTrustSocketFactory");
+
