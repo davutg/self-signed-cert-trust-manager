@@ -6,6 +6,7 @@ Some ways to omit SSL certificate validation
 
 1)
 	CustomTrustManager.initSsl();
+	
 2)
 	AxisProperties.setProperty("axis.socketSecureFactory","org.apache.axis.components.net.SunFakeTrustSocketFactory");
 	
